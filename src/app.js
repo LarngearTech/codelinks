@@ -1,4 +1,4 @@
-var app = angular.module('codeLinks', []);
+var app = angular.module('codeLinks', ['ui.router']);
 app.factory('posts', [function() {
     var o = {
         posts: []
