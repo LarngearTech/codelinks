@@ -35,6 +35,10 @@ router.param('comment', function(req, res, next, id) {
 	});
 });
 
+router.get('/', function(req, res, next) {
+	res.render('index', { title: 'CodeLinks' });
+});
+
 router.get('/posts', function(req, res, next) {
 	Post.find(function(err, posts) {
 		if (err) {
