@@ -1,8 +1,10 @@
 FROM phusion/baseimage
 
 RUN export DEBIAN_FRONTEND=noninteractive
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
 RUN curl -sL https://deb.nodesource.com/setup | bash -
-RUN apt-get update && apt-get install --no-install-recommends -y nodejs git vim
+RUN apt-get update && apt-get install --no-install-recommends -y nodejs git vim mongodb-org
 
 RUN mkdir /home/docker && \
   groupadd -r docker -g 433 && \
