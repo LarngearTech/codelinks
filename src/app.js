@@ -1,5 +1,10 @@
 var app = angular.module('codeLinks', []);
-
+app.factory('post', [function() {
+    var o = {
+        posts: []
+    };
+    return 0;
+}]);
 app.controller('MainCtrl', [
     '$scope',
     function($scope) {
