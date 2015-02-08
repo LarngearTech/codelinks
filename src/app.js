@@ -12,7 +12,7 @@ app.config([
             .state('posts', {
                 url: '/posts/{id}',
                 templateUrl: '/posts.html',
-                controller: 'PostCtrl'
+                controller: 'PostsCtrl'
             });
 
         $urlRouterProvider.otherwise('home');
@@ -56,6 +56,6 @@ app.controller('PostsCtrl', [
     '$stateParams',
     'posts',
     function($scope, $stateParams, posts) {
-
+        $scope.post = posts.posts[$stateParams.id]
     }
 ]);
