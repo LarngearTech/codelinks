@@ -37,6 +37,11 @@ app.factory('posts', ['$http', function($http) {
             o.posts.push(data);
         });
     };
+    o.upvote = function(post) {
+        return $http.put('/posts/' + post._id + '/upvote').success(function(data) {
+            post.upvotes += 1;
+        });
+    };
     return o;
 }]);
 app.controller('MainCtrl', [
@@ -56,7 +61,7 @@ app.controller('MainCtrl', [
             $scope.link = '';
         };
         $scope.incrementUpvotes = function(post) {
-            post.upvotes += 1;
+            posts.upvote(post);
         };
     }
 ]);
