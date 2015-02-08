@@ -14,5 +14,4 @@ RUN echo "export PATH=\$PATH:/home/docker/.node/bin" >> /home/docker/.bashrc
 RUN echo "export NODE_PATH=\$NODE_PATH:/home/docker/.node/lib/node_modules" >> /home/docker/.bashrc
 RUN su - docker -c "source /home/docker/.bashrc && npm install -g yo grunt-cli bower generator-meanjs"
 
-ADD . /codelinks/
 WORKDIR /codelinks
