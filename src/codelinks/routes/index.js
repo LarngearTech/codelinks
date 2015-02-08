@@ -20,6 +20,21 @@ router.param('post', function(req, res, next, id) {
 	});
 });
 
+router.param('comment', function(req, res, next, id) {
+	var query = Comment.findById(id);
+
+	query.exec(function(err, comment) {
+		if (err) {
+			return next(err);
+		}
+		if (!comment) {
+			return next(new Error('can\' find comment'));
+		}
+		req.comment = comment;
+		return next();
+	});
+});
+
 router.get('/posts', function(req, res, next) {
 	Post.find(function(err, posts) {
 		if (err) {
@@ -67,6 +82,15 @@ router.post('/posts/:post/comments', function(req, res, next) {
 			}
 			res.json(comment);
 		});
+	});
+});
+
+router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
+	req.comment.upvote(function(err, comment) {
+		if (err) {
+			return next(err);
+		}
+		res.json(comment);
 	});
 });
 
